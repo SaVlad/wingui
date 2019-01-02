@@ -15,16 +15,17 @@ Library is far from being done. So far only those features has been completed:
 * Clone this repo and compile `wingui` project. It will output `wingui.lib`.
 * Copy `.h` header files somewhere you like.
 * Link `wingui.lib` binary file to you project and then include `wingui.h`.
-* In most cases you'd like to create `wg::Window` class and find your way from here.
+* In most cases you'd like to create `wg::controls::Window` class and find your way from here.
+* You also can define `WG_USING_ALL` before including `wingui.h` to enable all library namespaces.
 
 Precompiled binaries will be released later, when I'm satisfied with functionality.
 *(I promise, I'll arrange files better later)*
 
 ## Controls management
-Using handy `wg::Control` class, Window and other controls *(in future)* are easily created and managed. Here's list what you can do to any control (including Windows):
+Using handy `wg::controls::Control` class, Window and other controls *(in future)* are easily created and managed. Here's list what you can do to any control (including Windows):
 * Get/Set Position
 * Get/Set Size
-* Get/Set Text *(C and C++ strings bot supported)*
+* Get/Set Text *(C and C++ strings both supported)*
 * Send custom message
 * Get native handle
 
@@ -40,8 +41,8 @@ new Window(
 ```
 
 ## Window notification listening
-`wg::Window` class has `MessagePump` function that runs `GetMessage` loop. Also, Window constructor creates and set's up `WndProc` to handle message and notifications. By default, Window has no behaviour for any message received, but you can add some using `SetEventListener` function.
-`SetEventListener` registers `wg::EventListener` object as message handler. It has quite a lot of functions to register your own handler for notification messages. You don't have to parse `WPARAM` and `LPARAM` yourself! EventListener does it for you and passes parameters to your handlers. Example:
+`wg::controls::Window` class has `MessagePump` function that runs `GetMessage` loop. Also, Window constructor creates and set's up `WndProc` to handle message and notifications. By default, Window has no behaviour for any message received, but you can add some using `SetEventListener` function.
+`SetEventListener` registers `wg::controls::WindowEventListener` object as message handler. It has quite a lot of functions to register your own handler for notification messages. You don't have to parse `WPARAM` and `LPARAM` yourself! EventListener does it for you and passes parameters to your handlers. Example:
 ```
 bool CALLBACK MouseDownHandler(Window*window, MouseButton button, WORD x, WORD y, bool shift, bool ctrl)
 {
@@ -53,13 +54,13 @@ bool CALLBACK MouseDownHandler(Window*window, MouseButton button, WORD x, WORD y
 }
 ...
 Window *window = new Window();
-EventListener *el = new EventListener();
+WindowEventListener *el = new WindowEventListener();
 el->SetMouseDownCallback(MouseDownHandler);
 window->SetEventListener(el);
 window->Show();
 window->MessagePump();
 ```
-This is code is shortened obviously, but you can grasp possibilities of EventListener. At the moment, there are **32** notifications supported. Each is parsed, if needed, and passed to your handler.
+This is code is shortened obviously, but you can grasp possibilities of WindowEventListener. At the moment, there are **32** notifications supported. Each is parsed, if needed, and passed to your handler.
 Also notice, that handler must return a `bool`. If handler returned `true`, message considered as handled. If `false` is returned, then message is passed to `DefWindowProc` and handled by system.
 
 ## Win32Exception
@@ -78,3 +79,13 @@ There are some helper functions that are widely used across library and open for
 * `ShowConsole` function that show user console window if one is allocated.
 * `assert_win32(bool)` function that throws `wg::Win32Exception` or more specific one in case condition is `false`.
 * `assert_win32_maybe` function that throw `wg::Win32Exception` or more specific one in case there's error pending in `GetLastError`.
+
+## Changelog
+### 0.1.0
+* Initial commit.
+* Window class.
+* Exceptions, misc. functions, etc.
+
+### 0.1.1
+* Classes distributed to separate namespaces.
+* EventListener renamed to WindowEventListener.
