@@ -177,16 +177,16 @@ namespace wg::controls {
 		if (el) return el->RunMessage(this, uMsg, wParam, lParam);
 		return false;
 	}
-	EventListener*Window::SetEventListener(EventListener*listener) {
-		EventListener*old = el;
+	WindowEventListener*Window::SetEventListener(WindowEventListener*listener) {
+		WindowEventListener*old = el;
 		el = listener;
 		return old;
 	}
-	EventListener*Window::GetEventListener() const {
+	WindowEventListener*Window::GetEventListener() const {
 		return el;
 	}
 
-	EventListener::EventListener() :
+	WindowEventListener::WindowEventListener() :
 		Close(nullptr), Create(nullptr), Destroy(nullptr), EnabledChanged(nullptr),
 		SizeMoveStarted(nullptr), SizeMoveEnded(nullptr), Moved(nullptr), Moving(nullptr),
 		Ping(nullptr), Quit(nullptr), VisibleChanging(nullptr), SizeChanged(nullptr),
@@ -195,7 +195,7 @@ namespace wg::controls {
 		MouseHover(nullptr), MouseHWheel(nullptr), MouseWheel(nullptr), MouseMove(nullptr),
 		ActiveChanged(nullptr), AppCommandCb(nullptr), Char(nullptr), DeadChar(nullptr),
 		Hotkey(nullptr), KeyDown(nullptr), KeyUp(nullptr), ClipboardUpdate(nullptr) {}
-	bool EventListener::RunMessage(Window*window, UINT uMsg, WPARAM wParam, LPARAM lParam) const {
+	bool WindowEventListener::RunMessage(Window*window, UINT uMsg, WPARAM wParam, LPARAM lParam) const {
 		LPCREATESTRUCT lpcs;
 		WindowCreateEventArgs wcea;
 		LPRECT r;
@@ -326,100 +326,100 @@ namespace wg::controls {
 		default: return false;
 		}
 	}
-	void EventListener::SetCloseCallback(CloseCallback cb) {
+	void WindowEventListener::SetCloseCallback(CloseCallback cb) {
 		Close = cb;
 	}
-	void EventListener::SetCreateCallback(CreateCallback cb) {
+	void WindowEventListener::SetCreateCallback(CreateCallback cb) {
 		Create = cb;
 	}
-	void EventListener::SetDestroyCallback(DestroyCallback cb) {
+	void WindowEventListener::SetDestroyCallback(DestroyCallback cb) {
 		Destroy = cb;
 	}
-	void EventListener::SetEnabledChangedCallback(EnabledChangedCallback cb) {
+	void WindowEventListener::SetEnabledChangedCallback(EnabledChangedCallback cb) {
 		EnabledChanged = cb;
 	}
-	void EventListener::SetSizeMoveStartedCallback(SizeMoveStartedCallback cb) {
+	void WindowEventListener::SetSizeMoveStartedCallback(SizeMoveStartedCallback cb) {
 		SizeMoveStarted = cb;
 	}
-	void EventListener::SetSizeMoveEndedCallback(SizeMoveEndedCallback cb) {
+	void WindowEventListener::SetSizeMoveEndedCallback(SizeMoveEndedCallback cb) {
 		SizeMoveEnded = cb;
 	}
-	void EventListener::SetMovedCallback(MovedCallback cb) {
+	void WindowEventListener::SetMovedCallback(MovedCallback cb) {
 		Moved = cb;
 	}
-	void EventListener::SetMovingCallback(MovingCallback cb) {
+	void WindowEventListener::SetMovingCallback(MovingCallback cb) {
 		Moving = cb;
 	}
-	void EventListener::SetPingCallback(PingCallback cb) {
+	void WindowEventListener::SetPingCallback(PingCallback cb) {
 		Ping = cb;
 	}
-	void EventListener::SetQuitCallback(QuitCallback cb) {
+	void WindowEventListener::SetQuitCallback(QuitCallback cb) {
 		Quit = cb;
 	}
-	void EventListener::SetVisibleChangingCallback(VisibleChangingCallback cb) {
+	void WindowEventListener::SetVisibleChangingCallback(VisibleChangingCallback cb) {
 		VisibleChanging = cb;
 	}
-	void EventListener::SetSizeChangedCallback(SizeChangedCallback cb) {
+	void WindowEventListener::SetSizeChangedCallback(SizeChangedCallback cb) {
 		SizeChanged = cb;
 	}
-	void EventListener::SetSizeChangingCallback(SizeChangingCallback cb) {
+	void WindowEventListener::SetSizeChangingCallback(SizeChangingCallback cb) {
 		SizeChanging = cb;
 	}
-	void EventListener::SetUserChangedCallback(UserChangedCallback cb) {
+	void WindowEventListener::SetUserChangedCallback(UserChangedCallback cb) {
 		UserChanged = cb;
 	}
-	void EventListener::SetMouseLostCallback(MouseLostCallback cb) {
+	void WindowEventListener::SetMouseLostCallback(MouseLostCallback cb) {
 		MouseLost = cb;
 	}
-	void EventListener::SetMouseDownCallback(MouseDownCallback cb) {
+	void WindowEventListener::SetMouseDownCallback(MouseDownCallback cb) {
 		MouseDown = cb;
 	}
-	void EventListener::SetMouseUpCallback(MouseUpCallback cb) {
+	void WindowEventListener::SetMouseUpCallback(MouseUpCallback cb) {
 		MouseUp = cb;
 	}
-	void EventListener::SetMouseDoubleCallback(MouseDoubleCallback cb) {
+	void WindowEventListener::SetMouseDoubleCallback(MouseDoubleCallback cb) {
 		MouseDouble = cb;
 	}
-	void EventListener::SetMouseCapturedCallback(MouseCapturedCallback cb) {
+	void WindowEventListener::SetMouseCapturedCallback(MouseCapturedCallback cb) {
 		MouseCaptured = cb;
 	}
-	void EventListener::SetMouseLeftCallback(MouseLeftCallback cb) {
+	void WindowEventListener::SetMouseLeftCallback(MouseLeftCallback cb) {
 		MouseLeft = cb;
 	}
-	void EventListener::SetMouseHoverCallback(MouseHoverCallback cb) {
+	void WindowEventListener::SetMouseHoverCallback(MouseHoverCallback cb) {
 		MouseHover = cb;
 	}
-	void EventListener::SetMouseHWheelCallback(MouseHWheelCallback cb) {
+	void WindowEventListener::SetMouseHWheelCallback(MouseHWheelCallback cb) {
 		MouseHWheel = cb;
 	}
-	void EventListener::SetMouseWheelCallback(MouseWheelCallback cb) {
+	void WindowEventListener::SetMouseWheelCallback(MouseWheelCallback cb) {
 		MouseWheel = cb;
 	}
-	void EventListener::SetMouseMoveCallback(MouseMoveCallback cb) {
+	void WindowEventListener::SetMouseMoveCallback(MouseMoveCallback cb) {
 		MouseMove = cb;
 	}
-	void EventListener::SetActiveChangedCallback(ActiveChangedCallback cb) {
+	void WindowEventListener::SetActiveChangedCallback(ActiveChangedCallback cb) {
 		ActiveChanged = cb;
 	}
-	void EventListener::SetAppCommandCallback(AppCommandCallback cb) {
+	void WindowEventListener::SetAppCommandCallback(AppCommandCallback cb) {
 		AppCommandCb = cb;
 	}
-	void EventListener::SetCharCallback(CharCallback cb) {
+	void WindowEventListener::SetCharCallback(CharCallback cb) {
 		Char = cb;
 	}
-	void EventListener::SetDeadCharCallback(DeadCharCallback cb) {
+	void WindowEventListener::SetDeadCharCallback(DeadCharCallback cb) {
 		DeadChar = cb;
 	}
-	void EventListener::SetHotkeyCallback(HotkeyCallback cb) {
+	void WindowEventListener::SetHotkeyCallback(HotkeyCallback cb) {
 		Hotkey = cb;
 	}
-	void EventListener::SetKeyDownCallback(KeyDownCallback cb) {
+	void WindowEventListener::SetKeyDownCallback(KeyDownCallback cb) {
 		KeyDown = cb;
 	}
-	void EventListener::SetKeyUpCallback(KeyUpCallback cb) {
+	void WindowEventListener::SetKeyUpCallback(KeyUpCallback cb) {
 		KeyUp = cb;
 	}
-	void EventListener::SetClipboardUpdateCallback(ClipboardUpdateCallback cb) {
+	void WindowEventListener::SetClipboardUpdateCallback(ClipboardUpdateCallback cb) {
 		ClipboardUpdate = cb;
 	}
 

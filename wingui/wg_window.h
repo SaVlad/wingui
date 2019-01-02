@@ -49,12 +49,12 @@ namespace wg::controls {
 	};
 	MAKEFLAGS(WindowClassStyle);
 	class Window;
-	class EventListener;
+	class WindowEventListener;
 	class Window : public Control {
 	private:
 		std::vector<Control*> children;
 		LPCTSTR class_name;
-		EventListener*el;
+		WindowEventListener*el;
 	public:
 		Window();
 		Window(WindowStyle wstyle);
@@ -86,10 +86,10 @@ namespace wg::controls {
 		void Restore();
 		void MessagePump();
 		bool OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
-		EventListener*SetEventListener(EventListener*listener);
-		EventListener*GetEventListener() const;
+		WindowEventListener*SetEventListener(WindowEventListener*listener);
+		WindowEventListener*GetEventListener() const;
 	};
-	class EventListener {
+	class WindowEventListener {
 	private:
 		CloseCallback Close;
 		CreateCallback Create;
@@ -124,7 +124,7 @@ namespace wg::controls {
 		KeyUpCallback KeyUp;
 		ClipboardUpdateCallback ClipboardUpdate;
 	public:
-		EventListener();
+		WindowEventListener();
 		bool RunMessage(Window*window, UINT uMsg, WPARAM wParam, LPARAM lParam) const;
 		void SetCloseCallback(CloseCallback cb);
 		void SetCreateCallback(CreateCallback cb);
