@@ -40,7 +40,7 @@ bool CALLBACK quitcb(Window*window, DWORD code) {
 
 void main() {
 	try {
-		Window*window = new Window(WindowStyle::HasCaption|WindowStyle::HasWindowMenu);
+		Window*window = new Window(WindowStyle::WSHasCaption|WindowStyle::WSHasWindowMenu);
 		WindowEventListener*el = new WindowEventListener();
 		el->SetMouseDownCallback(mdcb);
 		el->SetCloseCallback(closecb);

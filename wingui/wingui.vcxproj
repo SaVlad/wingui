@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="wg_button.h" />
     <ClInclude Include="wg_control.h" />
     <ClInclude Include="wg_events.h" />
     <ClInclude Include="wg_exceptions.h" />
