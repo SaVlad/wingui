@@ -64,7 +64,7 @@ This is code is shortened obviously, but you can grasp possibilities of WindowEv
 Also notice, that handler must return a `bool`. If handler returned `true`, message considered as handled. If `false` is returned, then message is passed to `DefWindowProc` and handled by system.
 
 ## Win32Exception
-`wg::Win32Exception` is an all purpose class for standard Win32 errors. You pass it code from `GetLastError` and it extracts description from it.
+`wg::exceptions::Win32Exception` is an all purpose class for standard Win32 errors. You pass it code from `GetLastError` and it extracts description from it.
 There are few more specific exceptions for you to catch:
 * `InvalidHandleException`
 * `OutOfMemoryException`
@@ -77,8 +77,8 @@ There are some helper functions that are widely used across library and open for
 * `_tstring` typedef that resolves to `std::wstring`, if `UNICODE` is defined, and `std::string` otherwise.
 * `HideConsole` function that hides from user console window if any.
 * `ShowConsole` function that show user console window if one is allocated.
-* `assert_win32(bool)` function that throws `wg::Win32Exception` or more specific one in case condition is `false`.
-* `assert_win32_maybe` function that throw `wg::Win32Exception` or more specific one in case there's error pending in `GetLastError`.
+* `assert_win32(bool)` function that throws `wg::exceptions::Win32Exception` or more specific one in case condition is `false`.
+* `assert_win32_maybe` function that throw `wg::exceptions::Win32Exception` or more specific one in case there's error pending in `GetLastError`.
 
 ## Changelog
 ### 0.1.0
