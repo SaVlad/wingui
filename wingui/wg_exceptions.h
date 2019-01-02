@@ -5,7 +5,7 @@
 #include <exception>
 #include "wg_common.h"
 #define WIN32_EXCEPTION_CLASS(x,exc) class x:public Win32Exception{public:x():Win32Exception(exc){}};
-namespace wg {
+namespace wg::exceptions {
 	void ThrowWin32Exception(DWORD err);
 	void assert_win32(bool condition);
 	void assert_win32_maybe();

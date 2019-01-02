@@ -1,6 +1,6 @@
 #include "wg_exceptions.h"
 #define CASE_THROW(exc, err) case err: throw new exc()
-namespace wg {
+namespace wg::exceptions {
 	void ThrowWin32Exception(DWORD err) {
 		switch (err) {
 		case ERROR_INVALID_HANDLE: throw new InvalidHandleException();

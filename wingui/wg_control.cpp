@@ -1,6 +1,7 @@
 #include "wg_exceptions.h"
 #include "wg_control.h"
-namespace wg {
+namespace wg::controls {
+	using namespace wg::exceptions;
 	void Control::check_handle() const {
 		if (handle == nullptr) throw new InvalidHandleException();
 	}

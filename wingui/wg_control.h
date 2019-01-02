@@ -2,7 +2,7 @@
 #ifndef WG_CONTROL_H
 #define WG_CONTROL_H
 #include "wg_common.h"
-namespace wg {
+namespace wg::controls {
 	class Control {
 	protected:
 		HWND handle;

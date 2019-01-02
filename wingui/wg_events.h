@@ -4,7 +4,9 @@
 #include <Windows.h>
 #include "wg_common.h"
 #include "wg_window.h"
-namespace wg {
+namespace wg::controls { class Window; }
+namespace wg::events::window {
+	using namespace wg::controls;
 	typedef struct tagWindowCreateEventArgs {
 		int Width, Height, X, Y;
 		_tstring Title;
@@ -102,8 +104,6 @@ namespace wg {
 		Mouse = FAPPCOMMAND_MOUSE,
 		OEM = FAPPCOMMAND_OEM
 	};
-
-	class Window;
 
 	typedef bool(CALLBACK*CloseCallback)(Window*window); // WM_CLOSE
 	typedef bool(CALLBACK*CreateCallback)(Window*window, WindowCreateEventArgs args); // WM_CREATE

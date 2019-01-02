@@ -5,7 +5,8 @@
 #include <vector>
 #include "wg_control.h"
 #include "wg_events.h"
-namespace wg {
+namespace wg::controls {
+	using namespace wg::events::window;
 	enum WindowStyle {
 		WSNone = 0,
 		HasBorder = WS_BORDER,

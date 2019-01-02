@@ -1,6 +1,6 @@
+#define WG_USING_ALL
 #include <wingui.h>
 #include <tchar.h>
-using namespace wg;
 
 bool CALLBACK mdcb(Window*window, MouseButton button, WORD x, WORD y, bool shift, bool ctrl) {
 	_tprintf(_T("[0x%X] %s\n"), window->GetHandle(), window->GetText().c_str());

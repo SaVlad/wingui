@@ -17,13 +17,13 @@ LPCTSTR GetRandomString(int len) {
 	return str;
 }
 
-void RunCallbacks(wg::Window*window, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+void RunCallbacks(wg::controls::Window*window, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	if (window)
 		window->OnMessage(uMsg, wParam, lParam);
 }
 
 LRESULT CALLBACK WG_WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	wg::Window*window = (wg::Window*) GetWindowLongPtr(hWnd, GWLP_USERDATA);
+	wg::controls::Window*window = (wg::controls::Window*) GetWindowLongPtr(hWnd, GWLP_USERDATA);
 	if (uMsg == WM_CREATE) {
 		LPCREATESTRUCT create = (LPCREATESTRUCT)lParam;
 		SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG)create->lpCreateParams);
@@ -33,7 +33,7 @@ LRESULT CALLBACK WG_WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-namespace wg {
+namespace wg::controls {
 	Window::Window() : Window(WindowStyle::WSDefault) {}
 	Window::Window(WindowStyle wstyle) : Window(wstyle, WindowClassStyle::MoveSizeRedraw) {}
 	Window::Window(WindowClassStyle wcstyle) : Window(WindowStyle::WSDefault, wcstyle) {}
@@ -57,7 +57,7 @@ namespace wg {
 		c.lpszMenuName = NULL;
 		c.lpszClassName = class_name;
 		c.hIconSm = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(5), IMAGE_ICON, GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), LR_DEFAULTCOLOR);
-		assert_win32(RegisterClassEx(&c));
+		wg::exceptions::assert_win32(RegisterClassEx(&c));
 		handle = CreateWindowEx(
 			wexstyle, class_name, _T("New window"),
 			wstyle, CW_USEDEFAULT, CW_USEDEFAULT, 640, 480,
@@ -73,7 +73,7 @@ namespace wg {
 
 	void Window::BringToTop() {
 		check_handle();
-		assert_win32(BringWindowToTop(handle));
+		wg::exceptions::assert_win32(BringWindowToTop(handle));
 	}
 	void Window::Close() {
 		CloseWindow(handle);
@@ -87,7 +87,7 @@ namespace wg {
 	void Window::GetClientSize(int*w, int*h) const {
 		check_handle();
 		RECT r;
-		assert_win32(GetClientRect(handle, &r));
+		wg::exceptions::assert_win32(GetClientRect(handle, &r));
 		*w = (int)r.right - r.left;
 		*h = (int)r.bottom - r.top;
 	}
@@ -105,7 +105,7 @@ namespace wg {
 	bool Window::IsMinimized() const {
 		check_handle();
 		bool ret = IsIconic(handle);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 		return ret;
 	}
 	void Window::AddChild(Control*ctrl) {
@@ -140,27 +140,27 @@ namespace wg {
 	void Window::Hide() {
 		check_handle();
 		ShowWindow(handle, SW_HIDE);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 	}
 	void Window::Show() {
 		check_handle();
 		ShowWindow(handle, SW_SHOW);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 	}
 	void Window::Maximize() {
 		check_handle();
 		ShowWindow(handle, SW_MAXIMIZE);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 	}
 	void Window::Minimize() {
 		check_handle();
 		ShowWindow(handle, SW_MINIMIZE);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 	}
 	void Window::Restore() {
 		check_handle();
 		ShowWindow(handle, SW_RESTORE);
-		assert_win32_maybe();
+		wg::exceptions::assert_win32_maybe();
 	}
 	void Window::MessagePump() {
 		check_handle();
