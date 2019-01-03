@@ -4,7 +4,11 @@
 #include <Windows.h>
 #include "wg_common.h"
 #include "wg_window.h"
-namespace wg::controls { class Window; }
+#include "wg_button.h"
+namespace wg::controls {
+	class Window;
+	class Button;
+}
 namespace wg::events::window {
 	using namespace wg::controls;
 	typedef struct tagWindowCreateEventArgs {
@@ -140,5 +144,15 @@ namespace wg::events::window {
 	typedef bool(CALLBACK*KeyUpCallback)(Window*window, DWORD key, int repeat, bool extended, bool alt, bool previous, bool state); // WM_KEYUP
 
 	typedef bool(CALLBACK*ClipboardUpdateCallback)(Window*window); // WM_CLIPBOARDUPDATE
+}
+namespace wg::events::button {
+	using namespace wg::controls;
+
+	typedef bool(CALLBACK*ButtonMouseEnterCallback)(Button*button); // BCN_HOTITEMCHANGE
+	typedef bool(CALLBACK*ButtonMouseLeaveCallback)(Button*button); // BCN_HOTITEMCHANGE
+	typedef bool(CALLBACK*ButtonClickedCallback)(Button*button); // BN_CLICKED
+	typedef bool(CALLBACK*ButtonDoubleClickedCallback)(Button*button); // BN_DBLCLK
+	typedef bool(CALLBACK*ButtonLostFocusCallback)(Button*button); // BN_KILLFOCUS
+	typedef bool(CALLBACK*ButtonGotFocusCallback)(Button*button); // BN_SETFOCUS
 }
 #endif
