@@ -9,43 +9,46 @@ namespace wg::controls {
 	using namespace wg::events::window;
 	enum WindowStyle {
 		WSNone = 0,
-		HasBorder = WS_BORDER,
-		HasCaption = WS_CAPTION,
-		IsDisabled = WS_DISABLED,
-		IsDialog = WS_DLGFRAME,
-		HasHScroll = WS_HSCROLL,
-		IsMinimized = WS_MINIMIZE,
-		IsMaximized = WS_MAXIMIZE,
-		HasMinimize = WS_MINIMIZEBOX,
-		HasMaximize = WS_MAXIMIZEBOX,
 		WSDefault = WS_OVERLAPPEDWINDOW,
-		Popup = WS_POPUPWINDOW,
-		Sizable = WS_SIZEBOX,
-		HasWindowMenu = WS_SYSMENU,
-		IsVisible = WS_VISIBLE,
-		HasVScroll = WS_VSCROLL
+		WSHasBorder = WS_BORDER,
+		WSHasCaption = WS_CAPTION,
+		WSIsDisabled = WS_DISABLED,
+		WSIsDialog = WS_DLGFRAME,
+		WSHasHScroll = WS_HSCROLL,
+		WSIsMinimized = WS_MINIMIZE,
+		WSIsMaximized = WS_MAXIMIZE,
+		WSHasMinimize = WS_MINIMIZEBOX,
+		WSHasMaximize = WS_MAXIMIZEBOX,
+		WSOverlappedWindow = WS_OVERLAPPEDWINDOW,
+		WSPopup = WS_POPUPWINDOW,
+		WSSizable = WS_SIZEBOX,
+		WSHasWindowMenu = WS_SYSMENU,
+		WSIsVisible = WS_VISIBLE,
+		WSHasVScroll = WS_VSCROLL
 	};
 	MAKEFLAGS(WindowStyle);
 	enum WindowStyleEx {
 		WSEXNone = 0,
 		WSEXDefault = WS_EX_OVERLAPPEDWINDOW,
-		AcceptFiles = WS_EX_ACCEPTFILES,
-		SunkenEdge = WS_EX_CLIENTEDGE,
-		HasHelp = WS_EX_CONTEXTHELP,
-		IsModal = WS_EX_DLGMODALFRAME,
-		NoActivate = WS_EX_NOACTIVATE,
-		CommandDialog = WS_EX_PALETTEWINDOW,
-		ToolWindow = WS_EX_TOOLWINDOW,
-		TopMost = WS_EX_TOPMOST,
-		RaisedEdge = WS_EX_WINDOWEDGE
+		WSEXOverlappedWindow = WS_EX_OVERLAPPEDWINDOW,
+		WSEXAcceptFiles = WS_EX_ACCEPTFILES,
+		WSEXSunkenEdge = WS_EX_CLIENTEDGE,
+		WSEXHasHelp = WS_EX_CONTEXTHELP,
+		WSEXIsModal = WS_EX_DLGMODALFRAME,
+		WSEXNoActivate = WS_EX_NOACTIVATE,
+		WSEXCommandDialog = WS_EX_PALETTEWINDOW,
+		WSEXToolWindow = WS_EX_TOOLWINDOW,
+		WSEXTopMost = WS_EX_TOPMOST,
+		WSEXRaisedEdge = WS_EX_WINDOWEDGE
 	};
 	MAKEFLAGS(WindowStyleEx);
 	enum WindowClassStyle {
 		WCSNone = 0,
-		ReceiveDoubleClick = CS_DBLCLKS,
-		DropShadow = CS_DROPSHADOW,
-		NoClose = CS_NOCLOSE,
-		MoveSizeRedraw = CS_VREDRAW | CS_HREDRAW
+		WCSDefault = CS_VREDRAW | CS_HREDRAW,
+		WCSReceiveDoubleClick = CS_DBLCLKS,
+		WCSDropShadow = CS_DROPSHADOW,
+		WCSNoClose = CS_NOCLOSE,
+		WCSMoveSizeRedraw = CS_VREDRAW | CS_HREDRAW
 	};
 	MAKEFLAGS(WindowClassStyle);
 	class Window;

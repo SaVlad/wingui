@@ -5,15 +5,15 @@
 bool CALLBACK mdcb(Window*window, MouseButton button, WORD x, WORD y, bool shift, bool ctrl) {
 	_tprintf(_T("[0x%X] %s\n"), window->GetHandle(), window->GetText().c_str());
 	_tputs(_T("Mouse down"));
-	if (HASFLAG(button, MouseButton::LeftButton))
+	if (HASFLAG(button, MouseButton::MBLeft))
 		_tprintf(_T("Left "));
-	if (HASFLAG(button, MouseButton::MiddleButton))
+	if (HASFLAG(button, MouseButton::MBMiddle))
 		_tprintf(_T("Middle "));
-	if (HASFLAG(button, MouseButton::RightButton))
+	if (HASFLAG(button, MouseButton::MBRight))
 		_tprintf(_T("Right "));
-	if (HASFLAG(button, MouseButton::XButton1))
+	if (HASFLAG(button, MouseButton::MBX1))
 		_tprintf(_T("X1 "));
-	if (HASFLAG(button, MouseButton::XButton2))
+	if (HASFLAG(button, MouseButton::MBX2))
 		_tprintf(_T("X2 "));
 	if (shift)
 		_tprintf(_T("Shift "));
@@ -40,7 +40,7 @@ bool CALLBACK quitcb(Window*window, DWORD code) {
 
 void main() {
 	try {
-		Window*window = new Window(WindowStyle::HasCaption|WindowStyle::HasWindowMenu);
+		Window*window = new Window(WindowStyle::WSHasCaption|WindowStyle::WSHasWindowMenu);
 		WindowEventListener*el = new WindowEventListener();
 		el->SetMouseDownCallback(mdcb);
 		el->SetCloseCallback(closecb);

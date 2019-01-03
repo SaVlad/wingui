@@ -35,12 +35,12 @@ LRESULT CALLBACK WG_WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 
 namespace wg::controls {
 	Window::Window() : Window(WindowStyle::WSDefault) {}
-	Window::Window(WindowStyle wstyle) : Window(wstyle, WindowClassStyle::MoveSizeRedraw) {}
+	Window::Window(WindowStyle wstyle) : Window(wstyle, WindowClassStyle::WCSDefault) {}
 	Window::Window(WindowClassStyle wcstyle) : Window(WindowStyle::WSDefault, wcstyle) {}
-	Window::Window(WindowStyleEx wexstyle) : Window(WindowStyle::WSDefault, wexstyle, WindowClassStyle::MoveSizeRedraw) {}
-	Window::Window(WindowStyle wstyle, WindowStyleEx wexstyle) : Window(wstyle, wexstyle, WindowClassStyle::MoveSizeRedraw) {}
+	Window::Window(WindowStyleEx wexstyle) : Window(WindowStyle::WSDefault, wexstyle, WindowClassStyle::WCSDefault) {}
+	Window::Window(WindowStyle wstyle, WindowStyleEx wexstyle) : Window(wstyle, wexstyle, WindowClassStyle::WCSDefault) {}
 	Window::Window(WindowStyle wstyle, WindowClassStyle wcstyle) : Window(wstyle, WindowStyleEx::WSEXDefault, wcstyle) {}
-	Window::Window(WindowStyleEx wexstyle, WindowClassStyle wcstyle) : Window(WindowStyle::WSNone, wexstyle, wcstyle) {}
+	Window::Window(WindowStyleEx wexstyle, WindowClassStyle wcstyle) : Window(WindowStyle::WSDefault, wexstyle, wcstyle) {}
 	Window::Window(WindowStyle wstyle, WindowStyleEx wexstyle, WindowClassStyle wcstyle) : Control(), el(nullptr) {
 		class_name = GetRandomString(12);
 		HINSTANCE hInstance = GetModuleHandle(NULL);
